@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using US.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using US.Domain.Repository.ShortUrl;
 using US.IService.ShortUrl;
 using US.IService.ShortUrl.DTOs;
+using US.Service.ShortUrl;
 
 namespace US.Web.API.Controllers
 {
@@ -19,10 +17,12 @@ namespace US.Web.API.Controllers
         private readonly IShortUrlService _shortUrlService;
         private readonly ILogger<ShortUrlController> _logger;
 
-        public ShortUrlController(ILogger<ShortUrlController> logger, IShortUrlService shortUrlService)
+        public ShortUrlController(ILogger<ShortUrlController> logger/*, IShortUrlService shortUrlService*/)
         {
             _logger = logger;
-            _shortUrlService = shortUrlService;
+            //_shortUrlService = shortUrlService;
+
+            _shortUrlService = new ShortUrlService(new ShortUrlRepository(null, null, null));
         }
 
         [HttpGet]

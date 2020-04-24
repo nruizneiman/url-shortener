@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using US.Domain.Base.IRepository;
+using US.Domain.Entities;
+using US.Domain.Repository.ShortUrl;
+using US.Infrastructure.Base.Repository;
 using US.IService.ShortUrl;
 using US.Service.ShortUrl;
 
@@ -14,7 +17,7 @@ namespace US.Application.IoC
 
         public static void RegisterRepositories(IServiceCollection services)
         {
-            //services.AddScoped<IRepository, BaseMongoRepository>();
+            services.AddScoped<IRepository, ShortUrlRepository>();
         }
     }
 }

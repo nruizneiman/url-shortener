@@ -28,11 +28,19 @@ namespace US.Web.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(config =>
+                config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "url-shortenter",
+                    Description = "Useful API project to get shorten url starting from long one."
+                }));
+
             services.ConfigureCors();
             services.AddApiVersioning();
 
-            Ioc.RegisterServices(services);
-            Ioc.RegisterRepositories(services);
+            //Ioc.RegisterServices(services);
+            //Ioc.RegisterRepositories(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +63,11 @@ namespace US.Web.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(config =>
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "v1")
+                );
         }
     }
 }
