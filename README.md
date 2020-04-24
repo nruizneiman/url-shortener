@@ -25,6 +25,7 @@ Useful API project to get shorten url starting from long one.
 - UnitTesting
 - Click counter from each url
 - Save information such IP, Host and OS from each visitor
+- MVC Implementation
 - Identity: Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
 
 # Source
