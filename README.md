@@ -3,7 +3,8 @@ Useful API project to get shorten url starting from long one.
 
 # Summary
 - [Implemented using](#implemented-using)  
-- [Coming soon](#coming-soon)  
+- [Coming soon](#coming-soon)
+- [Contributing](#contributing)
 - [Source](#source)
 
 # Implemented using
@@ -27,6 +28,11 @@ Useful API project to get shorten url starting from long one.
 - Save information such IP, Host and OS from each visitor
 - MVC Implementation
 - Identity: Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
+
+# Contributing
+If you've ever wanted to contribute to open source, and a great cause, now is your chance!
+
+See the [contributing docs](https://github.com/NICORUIZ06/url-shortener/blob/master/CONTRIBUTING.md) for more information
 
 # Source
 - [Create .Net Core Web API by Bugra Sitemkar](https://blog.usejournal.com/creating-a-url-shortener-service-from-scratch-with-net-core-e8ebacad12c1)
