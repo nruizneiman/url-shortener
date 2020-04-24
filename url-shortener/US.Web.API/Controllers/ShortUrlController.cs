@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using US.Application.Connection;
 using US.Domain.Repository.ShortUrl;
 using US.IService.ShortUrl;
 using US.IService.ShortUrl.DTOs;
@@ -22,7 +23,7 @@ namespace US.Web.API.Controllers
             _logger = logger;
             //_shortUrlService = shortUrlService;
 
-            _shortUrlService = new ShortUrlService(new ShortUrlRepository(null, null, null));
+            _shortUrlService = new ShortUrlService(new ShortUrlRepository(ConnectionString.DefaultConnectionString, ConnectionString.DbName, ConnectionString.CollectionName));
         }
 
         [HttpGet]

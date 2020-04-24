@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\US.Application.Connection\US.Application.Connection.csproj" />
     <ProjectReference Include="..\US.Application.IoC\US.Application.IoC.csproj" />
     <ProjectReference Include="..\US.IService\US.IService.csproj" />
   </ItemGroup>
