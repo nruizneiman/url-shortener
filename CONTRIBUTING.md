@@ -1,3 +1,6 @@
+# Please send me a mail if you want to be a contributor to this project
+### nicolasruizneiman@gmail.com
+
 ## Specification
 The [specification](https://allcontributors.org) is detailed on [allcontributors.org](https://allcontributors.org)
 
