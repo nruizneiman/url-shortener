@@ -16,7 +16,6 @@ Useful API project to get shorten url starting from long one.
 - Global Exception Handling
 
 # Coming soon
-- Swagger as API documentation
 - Dockerization
 - Azure Pipelines CI
 - EntityFramework Core
@@ -36,3 +35,4 @@ See the [contributing docs](https://github.com/NICORUIZ06/url-shortener/blob/mas
 
 # Source
 - [Create .Net Core Web API by Bugra Sitemkar](https://blog.usejournal.com/creating-a-url-shortener-service-from-scratch-with-net-core-e8ebacad12c1)
+- [Swagger implementation tutorial](https://www.youtube.com/watch?v=AV8i4h7HwqE)
