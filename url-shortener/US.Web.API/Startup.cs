@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using US.Application.Connection;
 using US.Application.IoC;
+using US.Infrastructure.Context;
 using US.Web.API.Extensions;
 
 namespace US.Web.API
@@ -39,8 +42,11 @@ namespace US.Web.API
             services.ConfigureCors();
             services.AddApiVersioning();
 
-            //Ioc.RegisterServices(services);
-            //Ioc.RegisterRepositories(services);
+            Ioc.RegisterServices(services);
+            Ioc.RegisterRepositories(services);
+
+            //services.AddDbContext<DataContext>(options => options.UseSqlServer(ConnectionString.SqlServerConnectionString));
+            services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase(databaseName: "ShortUrls"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

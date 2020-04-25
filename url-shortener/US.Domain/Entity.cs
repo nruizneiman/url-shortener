@@ -1,9 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using System;
 
 namespace US.Domain
 {
-    public abstract class Entity
+    public class Entity
     {
-        public ObjectId Id { get; set; }
+        public long Id { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

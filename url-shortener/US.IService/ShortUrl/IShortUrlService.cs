@@ -5,7 +5,6 @@ namespace US.IService.ShortUrl
 {
     public interface IShortUrlService
     {
-        string GenerateShortUrl();
         IEnumerable<ShortUrlDto> GetCollectionFromDataStore();
         ShortUrlDto GetItemFromDataStore(string url);
         ShortUrlResponseDto SaveItemToDataStore(ShortUrlRequestDto shortUrlRequest);

@@ -5,10 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\US.Domain.Base\US.Domain.Base.csproj" />
     <ProjectReference Include="..\US.Domain.Repository\US.Domain.Repository.csproj" />
-    <ProjectReference Include="..\US.IService\US.IService.csproj" />
-    <ProjectReference Include="..\US.Service.Mapper\US.Service.Mapper.csproj" />
+    <ProjectReference Include="..\US.Infrastructure.Base\US.Infrastructure.Base.csproj" />
   </ItemGroup>
 
 </Project>

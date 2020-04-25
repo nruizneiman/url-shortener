@@ -9,7 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\US.Application.Connection\US.Application.Connection.csproj" />
+    <ProjectReference Include="..\US.Domain.Base\US.Domain.Base.csproj" />
     <ProjectReference Include="..\US.Domain\US.Domain.csproj" />
+    <ProjectReference Include="..\US.Infrastructure\US.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

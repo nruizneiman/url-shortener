@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using US.Application.Connection;
 using US.Domain.Repository.ShortUrl;
 using US.IService.ShortUrl;
 using US.IService.ShortUrl.DTOs;
+using US.IService.Visitor;
+using US.IService.Visitor.DTOs;
 using US.Service.ShortUrl;
 
 namespace US.Web.API.Controllers
@@ -16,14 +19,14 @@ namespace US.Web.API.Controllers
     public class ShortUrlController : ControllerBase
     {
         private readonly IShortUrlService _shortUrlService;
+        private readonly IVisitorService _visitorService;
         private readonly ILogger<ShortUrlController> _logger;
 
-        public ShortUrlController(ILogger<ShortUrlController> logger/*, IShortUrlService shortUrlService*/)
+        public ShortUrlController(ILogger<ShortUrlController> logger, IShortUrlService shortUrlService, IVisitorService visitorService)
         {
             _logger = logger;
-            //_shortUrlService = shortUrlService;
-
-            _shortUrlService = new ShortUrlService(new ShortUrlRepository(ConnectionString.DefaultConnectionString, ConnectionString.DbName, ConnectionString.CollectionName));
+            _shortUrlService = shortUrlService;
+            _visitorService = visitorService;
         }
 
         [HttpGet]
@@ -43,13 +46,32 @@ namespace US.Web.API.Controllers
 
                 if (shortUrl != null)
                 {
-                    if (redirect)
+                    var userAgent = HttpContext.Request.Headers["User-Agent"];
+                    string parsedUserAgent = Convert.ToString(userAgent[0]);
+
+                    VisitorRequestDto visitorRequest = new VisitorRequestDto
                     {
-                        return Redirect(shortUrl.LongURL);
+                        Ip = GetIPAddress(),
+                        ShortUrl = shorturl,
+                        UserAgent = parsedUserAgent
+                    };
+
+                    VisitorResponseDto visitorResponse = _visitorService.RegisterVisitor(visitorRequest).Result;
+
+                    if (visitorResponse != null)
+                    {
+                        if (redirect)
+                        {
+                            return Redirect(shortUrl.LongURL);
+                        }
+                        else
+                        {
+                            return Ok(shortUrl);
+                        }
                     }
                     else
                     {
-                        return Ok(shortUrl);
+                        return BadRequest("Can't register visitor");
                     }
                 }
 
@@ -73,6 +95,11 @@ namespace US.Web.API.Controllers
             }
 
             return BadRequest(ModelState.Values);
+        }
+
+        private string GetIPAddress()
+        {
+            return string.Empty;
         }
     }
 }
