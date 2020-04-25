@@ -9,22 +9,24 @@ Useful API project to get shorten url starting from long one.
 
 # Implemented using
 - .NET Core
-- Mongo DB
+- SqlServer (InMemory)
 - IoC
-- Repositories
+- Repository pattern
+- Unit of Work
 - Api Versioning
 - Global Exception Handling
+- SOLID
+- Swagger
+- EntityFramework Core
+- Click counter from each url
+- Save information such IP, Host and OS from each visitor
 
 # Coming soon
 - Dockerization
 - Azure Pipelines CI
-- EntityFramework Core
-- SqlServer Integration (optional)
 - MySql integration (optional)
 - JWT
 - UnitTesting
-- Click counter from each url
-- Save information such IP, Host and OS from each visitor
 - MVC Implementation
 - Identity: Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
 
