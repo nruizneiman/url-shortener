@@ -25,9 +25,9 @@ namespace US.Web.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            IEnumerable<VisitorDto> visitors = _visitorService.GetAll();
+            IEnumerable<VisitorDto> visitors = await _visitorService.GetAll();
 
             return Ok(visitors);
         }

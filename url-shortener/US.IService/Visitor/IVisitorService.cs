@@ -6,7 +6,7 @@ namespace US.IService.Visitor
 {
     public interface IVisitorService
     {
-        IEnumerable<VisitorDto> GetAll();
+        Task<IEnumerable<VisitorDto>> GetAll();
         Task<VisitorResponseDto> RegisterVisitor(VisitorRequestDto visitorRequest);
     }
 }

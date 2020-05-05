@@ -20,16 +20,18 @@ namespace US.Service.Visitor
             _shortUrlRepository = shortUrlRepository;
         }
 
-        public IEnumerable<VisitorDto> GetAll()
+        public async Task<IEnumerable<VisitorDto>> GetAll()
         {
-            return _visitorRepository.GetAll().Result.Select(x => new VisitorDto
+            var visitors = await _visitorRepository.GetByFilter(includeProperties: "ShortUrl");
+
+            return visitors.Select(x => new VisitorDto
             {
                 Id = x.Id,
                 Date = x.Date,
                 Ip = x.Ip,
                 UserAgent = x.UserAgent,
-                //LongURL = x.ShortUrl.LongURL,
-                //ShortURL = x.ShortUrl.ShortURL
+                LongURL = x.ShortUrl.LongURL,
+                ShortURL = x.ShortUrl.ShortURL
             }).ToList();
         }
 

@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using US.Application.Connection;
-using US.Domain.Repository.ShortUrl;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http.Features;
 using US.IService.ShortUrl;
 using US.IService.ShortUrl.DTOs;
 using US.IService.Visitor;
 using US.IService.Visitor.DTOs;
-using US.Service.ShortUrl;
 
 namespace US.Web.API.Controllers
 {
@@ -38,7 +37,7 @@ namespace US.Web.API.Controllers
         }
 
         [HttpGet("{shorturl}", Name = "Get")]
-        public IActionResult Get(string shorturl, [FromQuery(Name = "redirect")] bool redirect = true)
+        public async Task<IActionResult> Get(string shorturl,[FromQuery(Name = "ipAdress")]string ipAdress = null, [FromQuery(Name = "redirect")] bool redirect = true)
         {
             try
             {
@@ -49,30 +48,28 @@ namespace US.Web.API.Controllers
                     var userAgent = HttpContext.Request.Headers["User-Agent"];
                     string parsedUserAgent = Convert.ToString(userAgent[0]);
 
+                    var ip = ipAdress ?? GetIpAddress();
+
                     VisitorRequestDto visitorRequest = new VisitorRequestDto
                     {
-                        Ip = GetIPAddress(),
+                        Ip = ip,
                         ShortUrl = shorturl,
                         UserAgent = parsedUserAgent
                     };
 
-                    VisitorResponseDto visitorResponse = _visitorService.RegisterVisitor(visitorRequest).Result;
+                    VisitorResponseDto visitorResponse = await _visitorService.RegisterVisitor(visitorRequest);
 
-                    if (visitorResponse != null)
+                    if (visitorResponse.Success)
                     {
                         if (redirect)
                         {
                             return Redirect(shortUrl.LongURL);
                         }
-                        else
-                        {
-                            return Ok(shortUrl);
-                        }
+
+                        return Ok(shortUrl);
                     }
-                    else
-                    {
-                        return BadRequest("Can't register visitor");
-                    }
+
+                    return BadRequest("Can't register visitor");
                 }
 
                 return NotFound();
@@ -92,14 +89,15 @@ namespace US.Web.API.Controllers
 
                 if (result != null)
                     return Ok(result);
+                //return CreatedAtAction(nameof(Get), new {result.ShortURL}, result);
             }
 
             return BadRequest(ModelState.Values);
         }
 
-        private string GetIPAddress()
+        private string GetIpAddress()
         {
-            return string.Empty;
+            return HttpContext.Features.Get<IHttpConnectionFeature>()?.RemoteIpAddress.ToString();
         }
     }
 }
