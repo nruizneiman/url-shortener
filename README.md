@@ -24,11 +24,11 @@ Useful API project to get shorten url starting from long one.
 # Coming soon
 - Dockerization
 - Azure Pipelines CI
-- MySql integration (optional)
+- ~~MySql integration (optional)~~
 - JWT
 - UnitTesting
 - MVC Implementation
-- Identity: Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
+- ~~Identity:~~ Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
 
 # Contributing
 If you've ever wanted to contribute to open source, and a great cause, now is your chance!
