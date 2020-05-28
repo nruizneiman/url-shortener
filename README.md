@@ -1,4 +1,6 @@
 # url-shortener
+[![Build Status](https://dev.azure.com/NCRZ06/url-shortener/_apis/build/status/NICORUIZ06.url-shortener?branchName=master)](https://dev.azure.com/NCRZ06/url-shortener/_build/latest?definitionId=2&branchName=master)
+
 Useful API project to get shorten url starting from long one.
 
 # Summary
@@ -20,10 +22,10 @@ Useful API project to get shorten url starting from long one.
 - EntityFramework Core
 - Click counter from each url
 - Save information such IP, Host and OS from each visitor
+- Azure Pipelines CI
 
 # Coming soon
 - Dockerization
-- Azure Pipelines CI
 - ~~MySql integration (optional)~~
 - JWT
 - UnitTesting
