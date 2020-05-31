@@ -23,9 +23,9 @@ Useful API project to get shorten url starting from long one.
 - Click counter from each url
 - Save information such IP, Host and OS from each visitor
 - Azure Pipelines CI
+- Dockerization
 
 # Coming soon
-- Dockerization
 - ~~MySql integration (optional)~~
 - JWT
 - UnitTesting
