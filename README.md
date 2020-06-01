@@ -26,11 +26,11 @@ Useful API project to get shorten url starting from long one.
 - Docker
 
 # Coming soon
-- ~~MySql integration (optional)~~
 - JWT
 - UnitTesting
 - MVC Implementation
-- ~~Identity:~~ Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
+- Manage Accounts, Social authentication, profiles, Roles, Save Shortened URLs by each account
+- MediatR
 
 # Contributing
 If you've ever wanted to contribute to open source, and a great cause, now is your chance!
