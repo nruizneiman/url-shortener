@@ -81,11 +81,26 @@ namespace US.Web.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ShortUrlRequestDto request)
+        public IActionResult GenerateShortUrl([FromBody] ShortUrlRequestDto request)
         {
             if (ModelState.IsValid)
             {
                 ShortUrlResponseDto result = _shortUrlService.SaveItemToDataStore(request);
+
+                if (result != null)
+                    return Ok(result);
+                //return CreatedAtAction(nameof(Get), new {result.ShortURL}, result);
+            }
+
+            return BadRequest(ModelState.Values);
+        }
+
+        [HttpPost("{shortUrl}")]
+        public IActionResult GenerateShortUrl([FromBody] ShortUrlRequestDto request, string shortUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                ShortUrlResponseDto result = _shortUrlService.SaveItemToDataStore(request, shortUrl);
 
                 if (result != null)
                     return Ok(result);

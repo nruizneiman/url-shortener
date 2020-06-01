@@ -84,6 +84,50 @@ namespace US.Service.ShortUrl
             }
         }
 
+        public ShortUrlResponseDto SaveItemToDataStore(ShortUrlRequestDto shortUrlRequest, string shortUrl)
+        {
+            Domain.Entities.ShortUrl previouslySaved = _shortUrlRepository.GetItemFromDataStoreByLongUrl(shortUrlRequest.LongURL);
+            if (previouslySaved != null)
+            {
+                return new ShortUrlResponseDto { ShortURL = previouslySaved.ShortURL, Success = true, Message = "This url has been saved previously" };
+            }
+            else
+            {
+                Domain.Entities.ShortUrl shorturl = ShortUrlMapper.MapRequestDtoToEntity(shortUrlRequest);
+
+                if (ShortUrlExists(shortUrl))
+                {
+                    return new ShortUrlResponseDto
+                    {
+                        Message = "This short URL already exists, please pick another different.",
+                        Success = false,
+                        ShortURL = shortUrl
+                    };
+                }
+
+                shorturl.ShortURL = shortUrl;
+
+                Domain.Entities.ShortUrl savedModel = _shortUrlRepository.SaveItemToDataStore(shorturl).Result;
+
+                try
+                {
+                    _shortUrlRepository.Commit();
+                }
+                catch (Exception)
+                {
+                    _shortUrlRepository.Rollback();
+                    throw;
+                }
+
+                return new ShortUrlResponseDto
+                {
+                    ShortURL = savedModel.ShortURL,
+                    Success = true,
+                    Message = "Saved successfully"
+                };
+            }
+        }
+
         private string GenerateShortUrl()
         {
             int length = 7;

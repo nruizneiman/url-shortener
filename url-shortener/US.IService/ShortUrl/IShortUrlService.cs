@@ -8,5 +8,6 @@ namespace US.IService.ShortUrl
         IEnumerable<ShortUrlDto> GetCollectionFromDataStore();
         ShortUrlDto GetItemFromDataStore(string url);
         ShortUrlResponseDto SaveItemToDataStore(ShortUrlRequestDto shortUrlRequest);
+        ShortUrlResponseDto SaveItemToDataStore(ShortUrlRequestDto shortUrlRequest, string shortUrl);
     }
 }
