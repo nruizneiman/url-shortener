@@ -1,7 +1,7 @@
 # url-shortener
 [![Build Status](https://dev.azure.com/NCRZ06/url-shortener/_apis/build/status/NICORUIZ06.url-shortener?branchName=master)](https://dev.azure.com/NCRZ06/url-shortener/_build/latest?definitionId=2&branchName=master)
 
-Useful API project to get shorten url starting from long one.
+Useful API project to get shorten URL starting from a long one.
 
 # Summary
 - [Implemented using](#implemented-using)  
